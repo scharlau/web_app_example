@@ -1,0 +1,25 @@
+{
+  "name": "web_app_example",
+  "version": "1.0.0",
+  "description": "A simple web app example highlighting tools and components",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scharlau/web_app_example.git"
+  },
+  "keywords": [],
+  "author": "Bruce Scharlau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scharlau/web_app_example/issues"
+  },
+  "homepage": "https://github.com/scharlau/web_app_example#readme"
+}

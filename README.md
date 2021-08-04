@@ -6,7 +6,7 @@ This is a demo app to see how you might use a variety of development tools to bu
 
 ## Getting Started
 You should have a suitable editor such as [Visual Studio Code](https://code.visualstudio.com), which is useful given its' integrated terminal.
-You should also install [Node Package Manager](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) which you install via Node Version Manager [nvm](https://github.com/nvm-sh/nvm), which aslo lets you install other tools and libraries to make your work easier. 
+You should also install [Node Package Manager](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) which you install via Node Version Manager [nvm](https://github.com/nvm-sh/nvm), which also lets you install other tools and libraries to make your work easier. 
 
 Update nvm by rerunning the install command, and use 'npm update -g' to update to the newest version and also update/remove other associated libraries.
 
@@ -25,7 +25,7 @@ Find a font that you want to use at [Google Fonts](https://fonts.google.com). Sa
 
 This has an Apache licence, so it's free to use. https://fonts.google.com/specimen/Open+Sans#license 
 
-## Starting the HTML and 
+## Starting the HTML 
 After we start to write the index.html file we should start to put some testing tools into place so that we're sure our html is valid and accessible. We can add [linthtml](https://github.com/linthtml/linthtml) with the command 
 
         npm install @linthtml/linthtml --save-dev
@@ -40,12 +40,27 @@ Pick the format, you prefer, and then add the file to your git repo. Now we can 
 
 After we run this, we can see that the file is ok with no errors. There is also a version of this that integrates into VS Code so that you can see errors as you make them when coding up your html files. You'll find it in the 'extensions' menu on the far-left of the application. 
 
+As as last step in this stage we can create a default package.json file with the command:
+
+        npm init --yes
+
+This will check your folder details and any git settings to add appropriate details. Now you can edit it accordingly, by adding your name in the empty author setting.
+
 ## Issues with Images
 While we can easily add an image with image tag, we also need to consider the image display size, and the alternative text that is used if images are turned off, or used with a screen reader. We can either edit the photo to the size we want, and/or add dimensions to the img tag. If we open the index.html file without any dimension values in the img tag, we can see the problem.
 
-If we change the img take to be like this, and then reload the page, then it resizes the images for display based on the width so that the height is relative.
+If we change the img take to be like this, and then reload the page, then it resizes the images for display based on the width so that the height is relative. Yes, we're using table for now. We'll change this later.
 
-        <img src="assets/images/kelpies.jpg" width="300" alt="cultural scene">
+        <table><tr>
+        <td><p>Beach<img src="assets/images/st_cyrus_beach.jpg" width="300" alt="beach scene"></p></td>
+        <td><p>Cafe<img src="assets/images/cafe.jpg" width="300" alt="cafe scene"></p></td>
+        </tr><tr>
+        <td><p>Culture<img src="assets/images/kelpies.jpg" width="300" alt="cultural scene"></p></td>
+        <td><p>City Life <img src="assets/images/hanoi.jpg" width="300" alt="city scene"></p></td>
+        </tr><tr>
+        <td><p>Forest<img src="assets/images/forest_circle.jpg" width="300" alt="forest scene"></p></td>
+        <td><p>Mountains<img src="assets/images/loch_ness.jpg" width="300" alt="mountain scene"></p></td>
+        </tr></table>
 
 However, this is still using the full image in the background, so if the filesize mattered, then we'd want to resize the images to be 300 pixels wide (or whatever we decided to use). We could use [Gimp](https://www.gimp.org) which is similar to Photoshop, but free as an open source application, so works across different platforms. It will work fine for resizing, and creating images to use for applications.
 
@@ -56,4 +71,31 @@ We can use this command to run the server from the root of our directory and the
 
         npx http-server 
 
-This will start the server in the current directory and then tell you its URL as 127.0.0.1:8080 which is also known as localhost:8080 which means you'll see the index page there due to the convention that web servers always look for 'index' by default in a folder.
+This will start the server in the current directory and then tell you its URL as 127.0.0.1:8080 which is also known as localhost:8080 which means you'll see the index page there due to the convention that web servers always look for 'index' by default in a folder. You can leave it running as you develop and then refresh the page to see your changes. Use ctrl-c to stop the server.
+
+## Adding Styling with CSS
+The page is white and uses a table to hold the images and associated text in place. This is both unexciting, and the table will mess up the presentation of people viewing it on a tablet or mobile. A better version would use CSS elements to style the page in an appropriate manner so that it flows smoothly according to the viewer's device.
+
+One simple option is to use [Bootstrap](https://getbootstrap.com) to handle the CSS for the site, as this will enable responsive page design by default for us. It will also work nicely with our Javascript and we can use as little, or as much as we need as the application grows and develops.
+
+While we could use a CDN (content delivery network) and pull the bootstrap files from the link, we'll instead download the zip file, and extract the two basic files that we need for now. Click the 'download' link, and unpack the zip file somewhere other than in the project. We only need a few files.
+
+We now can take the basic minified CSS and JS files to add to our 'assets' folder as our next step. Create an assets/css folder and and assets/js folder. In the 'css' folder put the 'bootstrap.min.css' file, and in the 'js' folder put the 'bootstrap.bundle.min.js' file. Both of these are minimised files for faster loading. Also add the folders and files to your git repo too.
+
+We'll use a custom.css file to hold the site specific css settings so that we avoid editing the bootstrap css file. This makes it easier to upgrade to future bootstrap versions, while also making any future changes easier too.
+
+Now that we're using CSS we should also add a linter to test our stylesheets for correctness. We can do that by using [Stylelint](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/get-started.md) which we can install with the command:
+
+    npm install --save-dev stylelint stylelint-config-standard
+
+We also need to add a configuration file called .styleintrc.json, and it should include the following:
+
+    {
+    "extends": "stylelint-config-standard"
+    }
+
+We can run this with the command:
+
+    npx stylelint "**/*.css"
+
+This works fine, but as the bootstrap file is minimised, it breaks lots of formating rules, so we add an ignore file to skip linting the file.
