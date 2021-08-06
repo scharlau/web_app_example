@@ -99,3 +99,39 @@ We can run this with the command:
     npx stylelint "**/*.css"
 
 This works fine, but as the bootstrap file is minimised, it breaks lots of formating rules, so we add an ignore file to skip linting the file. You can find this and other examples, at the [stylelint](https://stylelint.io) homepage.
+
+## Making the page responsive
+At the moment the page is not responsive as we use a table for our formatting, which is ALWAYS a bad idea. Tables use too many characters, and force their layout on the device reading the page, so that people might need to scroll sideways. We should use bootstrap library components to remove the table.
+
+The simplest option is to swap the table element for 'container' and the tr for 'row' and cells for 'col' which let us take advantage of the [flexbox](https://getbootstrap.com/docs/4.6/layout/grid/) layout in Bootstrap.
+
+        <div class="container">
+        <div class="row"><div class="col"><p>Beach
+            <img src="assets/images/st_cyrus_beach.jpg" width="300" alt="beach scene">
+            </p></div>
+        <div class="col"><p>Cafe
+            <img src="assets/images/cafe.jpg" width="300" alt="cafe scene">
+            </p></div></div>
+        <div class="row"><div class="col"><p>Culture
+            <img src="assets/images/kelpies.jpg" width="300" alt="cultural scene">
+        </p></div>
+        <div class="col"><p>City Life
+            <img src="assets/images/hanoi.jpg" width="300" alt="city scene">
+            </p></div></div>
+        <div class="row"><div class="col"><p>Forest
+            <img src="assets/images/forest_circle.jpg" width="300" alt="forest scene">
+        </p></div>
+        <div class="col"><p>Mountains
+            <img src="assets/images/loch_ness.jpg" width="300" alt="mountain scene">
+        </p></div>
+        </div></div>
+
+Now if you reload the page, and then narrow the browser width you'll see the page reformat itself into a single column with six items. Much better. The grid takes over the whole page now too, which means our space it better utilised. Just to be safe, we can also run the html and css linters to see if we made any mistakes.
+ 
+ ### Fixing Page Banner
+ We currently do notbing with the page space above the images. It is not centred, or have a background colour. We can use bootstrap basics to make it more inviting. We can use ['jumbotron'](https://getbootstrap.com/docs/4.6/components/jumbotron/) to do this for us, and use 'jumbotron text-center' as the class to centre the containter.
+
+## Moving onto the javascript parts
+For interaction with the quiz we need a 'form' and a scripting language that apply the 'quiz logic' for us. To stay within the browser we'll use a javascript file to hold that logic, which will load with the page. After it runs we'll display the result on the same page.
+
+We'll refactor this [quiz example](https://www.sitepoint.com/simple-javascript-quiz/) to suit our needs. 
