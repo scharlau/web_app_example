@@ -98,4 +98,4 @@ We can run this with the command:
 
     npx stylelint "**/*.css"
 
-This works fine, but as the bootstrap file is minimised, it breaks lots of formating rules, so we add an ignore file to skip linting the file.
+This works fine, but as the bootstrap file is minimised, it breaks lots of formating rules, so we add an ignore file to skip linting the file. You can find this and other examples, at the [stylelint](https://stylelint.io) homepage.
