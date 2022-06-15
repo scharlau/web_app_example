@@ -135,3 +135,5 @@ Now if you reload the page, and then narrow the browser width you'll see the pag
 For interaction with the quiz we need a 'form' and a scripting language that apply the 'quiz logic' for us. To stay within the browser we'll use a javascript file to hold that logic, which will load with the page. After it runs we'll display the result on the same page.
 
 We'll refactor this [quiz example](https://www.sitepoint.com/simple-javascript-quiz/) to suit our needs. 
+
+Adding in some texting with Jest should happen too.
